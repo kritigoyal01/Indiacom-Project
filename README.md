@@ -17,4 +17,4 @@ page count of pdf,.docx
 Issues
 page count of .doc is WIP
 after uploading .doc code shows the DOCUMENT OF PROPERTY in hexadecimal(converted from binary).
-That part has to be further evauluated to decrypt the page count section..(WIP)
+That part has to be further evauluated to decrypt the page count section.(WIP)
