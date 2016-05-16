@@ -11,3 +11,10 @@ or else many retrospective changes have to be accomodated in config.php
 enter "http://localhost:8081/ci_introl/login"    port no accordingly & change base url in config.php if different portno(vimp)
 
 login is the controller name which redirects to login page bydefault(constructor)
+
+Working
+page count of pdf,.docx
+Issues
+page count of .doc is WIP
+after uploading .doc code shows the DOCUMENT OF PROPERTY in hexadecimal(converted from binary).
+That part has to be further evauluated to decrypt the page count section..(WIP)
