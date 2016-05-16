@@ -1,0 +1,19 @@
+body {
+background: #b6b6b6;
+margin:0;
+padding: 0;
+
+}
+
+#login_form,#register_form
+{
+	width:300px;
+	background:#AAC4C5;
+	border:1px solid white;
+	margin:100px auto 0;
+	padding:1em;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	
+}

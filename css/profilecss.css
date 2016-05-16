@@ -1,0 +1,64 @@
+body {
+	
+}
+
+#container{
+	margin-top:-1%;
+}
+
+#body{
+	background:#99BC99;
+	width:900px;
+	height:1000px;
+	margin:0 auto;
+	//border:1px solid white;
+}
+#navbar{
+	width:100%;
+	height:60px;
+	background:#333333;
+	color:white;
+	position:relative;
+}
+#company{
+	font-size:35px;
+	float:left;
+	margin-top:10px;
+	margin-left:15%;
+	cursor:pointer;
+}
+#company:hover{
+color:orange;
+}
+#navbar ul {
+	float:right;
+	color:white;
+}
+#navbar ul li{
+	display: inline-block;
+	color:white;
+	font-weight:bold;
+	font-size:large;
+	float:left;
+	list-style:none;
+	margin:auto 20px;
+}
+#navbar a{
+	color:white;
+	text-decoration:none;
+}
+
+#navbar a:hover{
+	color:orange;
+}
+#box1{
+	height:150px;
+	background:#D893A1;
+	
+}
+.box2
+{
+	display:none;
+	height:500px;
+	background:#99BC99;
+}
