@@ -1,0 +1,12 @@
+create db named "testphp"
+import 2 tables named
+1- "form"
+2- "ci_sessions"
+2 users already created for demo purpose
+1- email="abc@gmail.com" password="abcd" (without "")
+2- email="def@gmail.com" password="defg"
+
+NOTE-
+for creating new user dont insert number in password(sign up process)
+some problem with md5 function which encrpyts the password..if that function removed,number in password works
+so enter only alphabets in password while signup for time being
