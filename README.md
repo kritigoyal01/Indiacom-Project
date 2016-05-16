@@ -19,6 +19,7 @@ page count of pdf,.docx
 Issues
 
 
-page count of .doc is WIP
-after uploading .doc code shows the DOCUMENT OF PROPERTY in hexadecimal(converted from binary).
+page count of .doc is WIP..
+
+After uploading .doc,code prints the DOCUMENT OF PROPERTY (DOP) in hexadecimal(converted from binary).
 That part has to be further evauluated to decrypt the page count section.(WIP)
