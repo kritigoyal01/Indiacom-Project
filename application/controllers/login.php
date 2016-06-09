@@ -158,20 +158,15 @@ public function upload_file()
 {
 	if($this->is_logged_in()==true)
 	{
-		//$temp=$info[0];
-	//echo $this->session->userdata('email');
-
-	
+		
 	$this->load->model('membership_model');
 	$def=$this->membership_model->getupload_info($this->session->userdata('email'));
 	
 	$mid=$def[0]->mid;
-	//echo $mid;
-	//echo br();
+	
 	$version=$def[0]->uploadV;
 	$version++;
-	//echo 'v'.$version;
-	//config
+	
 		$config['upload_path']="./uploads";
 		$config['allowed_types'] = 'doc|docx|pdf';//|gif|jpg|png';
 		$config['file_name']	= 'V'.$version.'_'.$mid;
@@ -188,15 +183,14 @@ public function upload_file()
 		{
 			
 			$temp=$this->upload->data();
-			
-			//echo br();
+		
 			
 			//page count
 			$pagecount=0;
 			if($temp['file_ext'] =='.pdf')
 			{
 				$pagecount=$this->getPDFPages($temp['file_name']);
-				//echo 'pagecount is'.$pagecount;
+		
 				
 			}
 			elseif ($temp['file_ext']=='.docx') 
@@ -206,9 +200,12 @@ public function upload_file()
 			} 		
 			elseif ($temp['file_ext']=='.doc') 
 			{
-					//$pagecount=
-					$this->get_num_pages_doc($temp['file_name']);
-				
+				$rawname=$temp['raw_name'].".pdf";
+				$fullpath="C:/xampp/htdocs/ci_introl/uploads/".$rawname;
+					
+					$this->convert_doc_to_pdf($temp['file_name'],$temp['raw_name']);
+					$pagecount=$this->getPDFPages($temp['raw_name'].".pdf");
+						unlink($fullpath);
 			} 		
 			
 			$data=array('pagecount'=>$pagecount,'upload_data' => $this->upload->data());
@@ -221,72 +218,6 @@ public function upload_file()
 		redirect('login');
 	}
 }
-/*  
-function page() {
-	$filepath="/opt/lampp/htdocs/ci_introl/uploads/preface.pdf";
-	
-    $fp = @fopen(preg_replace("/\[(.*?)\]/i", "", $filepath), "r");
-    $max = 0;
-    if (!$fp) {
-        echo "Could not open file: $filepath";
-        echo br();
-    } else {
-        while (!@feof($fp)) {
-            $line = @fgets($fp, 255);
-            if (preg_match('/\/Count [0-9]+/', $line, $matches)) {
-                preg_match('/[0-9]+/', $matches[0], $matches2);
-                if ($max < $matches2[0]) {
-                    $max = trim($matches2[0]);
-                    break;
-                }
-            }
-        }
-        @fclose($fp);
-    }
-    $data['page']=$max;
-    echo "$max";
-$this->load->view('page_count',$data);
-    //return $max;
-    
-}
-function page1() 
-{
-	$file="/opt/lampp/htdocs/ci_introl/uploads/preface.pdf";
-    //http://www.hotscripts.com/forums/php/23533-how-now-get-number-pages-one-document-pdf.html
-    if(!file_exists($file)) echo "cannot open filepath";
-    if (!$fp = @fopen($file,"r")) echo "cannot open ";
-    $max=0;
-    while(!feof($fp)) {
-            $line = fgets($fp,255);
-            if (preg_match('/\/Count [0-9]+/', $line, $matches)){
-                    preg_match('/[0-9]+/',$matches[0], $matches2);
-                    if ($max<$matches2[0]) $max=$matches2[0];
-            }
-    }
-    fclose($fp);
-   echo $max;
-}
-function page2()
-{
-$this->load->library('image_magician');
-$file="/opt/lampp/htdocs/ci_introl/uploads/preface.pdf";
-//$this->image_magician->Imagick('/opt/lampp/htdocs/ci_introl/uploads/preface.pdf');
-var_dump($this->image_magician->getNumberImages());
-//max=$this->image_magician->getNumberImages($file);
-
-/*$document = new Imagick('2_pager.pdf');
-
-var_dump($document->getNumberImages()); //returns 2
-
-$document = new Imagick('1_pager.pdf');
-
-var_dump($document->getNumberImages()); //returns 1
-
-?>
-echo $max;
-}*/
-
-//pdf working function using exe
 public function getPDFPages($filepath)
 {
 	/*$document="<?php echo base_url();?>"."uploads/V13.pdf";//not working
@@ -323,7 +254,7 @@ function getDocxPages($path)
 {
 	
 	$filename='C:\\xampp\htdocs\ci_introl\uploads\\'.$path;
-	//echo $filename;
+	
     $zip = new ZipArchive();
 
     if($zip->open($filename) === true)
@@ -343,84 +274,21 @@ function getDocxPages($path)
 echo "cant fetch the page count";
     
 }
-function get_num_pages_doc($path) // .doc Document of properties output in hexadecimal(need to analyse which section contains page no)
+function convert_doc_to_pdf($filename,$rawname)
 {
-	$filename='C:\\xampp\htdocs\ci_introl\uploads\\'.$path;
-    $handle = fopen($filename, 'r');
-    $line = @fread($handle, filesize($filename));
-
-    echo '<div style="font-family: courier new;">';
-
-        $hex = bin2hex($line);
-        $hex_array = str_split($hex, 4);
-        $i = 0;
-        $line = 0;
-        $collection = '';
-        foreach($hex_array as $key => $string)
-        {
-            $collection .= $this->hex_ascii($string);
-            $i++;
-
-            if($i == 1)
-            {
-                echo '<b>'.sprintf('%05X', $line).'0:</b> ';
-            }
-
-            echo strtoupper($string).' ';
-
-            if($i == 8)
-            {
-                echo ' '.$collection.' <br />'."\n";
-                $collection = '';
-                $i = 0;
-
-                $line += 1;
-            }
-        }
-
-    echo '</div>';
-
-    exit();
+	
+	$filepath="C:/xampp/htdocs/ci_introl/uploads/";
+	$word = new COM("Word.Application") or die ("Could not initialise Object.");
+	  // set it to 1 to see the MS Word window (the actual opening of the document)
+	 $word->Visible = 0;
+	  // recommend to set to 0, disables alerts like "Do you want MS Word to be the default .. etc"
+	 $word->DisplayAlerts = 0;
+	 $word->Documents->Open($filepath.$filename);
+	 $word->ActiveDocument->ExportAsFixedFormat($filepath.$rawname.".pdf", 17, false, 0, 0, 0, 0, 7, true, true, 2, true, true, false);
+	//above lines creates pdf with same name as doc file name  
+	$word->Quit(false);
+	 unset($word);
 }
-
-function hex_ascii($string, $html_safe = true)//part of function get_num_pages_doc
-{
-    $return = '';
-
-    $conv = array($string);
-    if(strlen($string) > 2)
-    {
-        $conv = str_split($string, 2);
-    }
-
-    foreach($conv as $string)
-    {
-        $num = hexdec($string);
-
-        $ascii = '.';
-        if($num > 32)
-        {   
-            $ascii = $this->unichr($num);
-        }
-
-        if($html_safe AND ($num == 62 OR $num == 60))
-        {
-            $return .= htmlentities($ascii);
-        }
-        else
-        {
-            $return .= $ascii;
-        }
-    }
-
-    return $return;
-}
-
-function unichr($intval)// part of function get_num_pages_doc
-{
-    return mb_convert_encoding(pack('n', $intval), 'UTF-8', 'UTF-16BE');
-}
-
 }//class login ends
 			
 
