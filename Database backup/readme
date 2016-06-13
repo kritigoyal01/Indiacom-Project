@@ -1,7 +1,9 @@
-create db named "testphp"
-import 2 tables named
+create db named #"testphp"
+import 3 tables named
 1- "form"
 2- "ci_sessions"
+3- "verification"
+
 2 users already created for demo purpose
 1- email="abc@gmail.com" password="abcd" (without "")
 2- email="def@gmail.com" password="defg"
