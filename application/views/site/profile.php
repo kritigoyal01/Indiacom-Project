@@ -14,7 +14,8 @@
 				<ul>
 					<!--<li><a href="#" class="tablink">upload</a></li>
 					<li><a href="http://localhost:8081/ci_introl/login/logout" >log out</a>	</li>-->
-					<li><a href="<?php echo base_url()?>login/upload_file">upload</a></li>
+					<li><a href="<?php echo base_url()?>verification">Document upload</a></li>
+					<li><a href="<?php echo base_url()?>upload">ResearchPaperUpload</a></li>
 					<li><a href="http://localhost:8081/ci_introl/login/logout" >log out</a>	</li>
 				</ul>
 			</div>

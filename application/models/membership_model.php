@@ -56,12 +56,10 @@
 		}
 			function getupload_info($emailverified)
 			{
-				$this->db->select('mid,uploadV');
+				$this->db->select('mid,uploadV,docno');
 				$this->db->where('email',$emailverified);
 			$query=$this->db->get('form');
-			/*foreach ($query as $key ) {
-				$key->mid
-			}*/
+			
 			return $query->result();
 				
 			}
@@ -71,6 +69,19 @@
 				$this->db->where('email',$emailverified);
 				$this->db->update('form',$data);
 				
+			}
+			
+			function document_verification_insert($mid,$id,$category,$upload_name,$sub_category=NULL)
+			{
+				$data=array('mid'=>$mid,'id'=>$id,'category'=>$category,'upload_name'=>$upload_name,'sub_category'=>$sub_category);
+			//	$this->db->where('email',$emailverified);
+				$this->db->insert('verification',$data);
+			}
+			function update_docno($emailverified,$newdocno)//update docno for document verification(as multiple uploads are allowed against one mid)
+			{
+				$data=array('docno'=>$newdocno);
+				$this->db->where('email',$emailverified);
+				$this->db->update('form',$data);
 			}
 		/*
 		function getUsers()

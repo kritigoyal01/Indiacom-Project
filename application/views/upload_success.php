@@ -1,4 +1,4 @@
-<html>
+<!--<html>
 <head>
 <title>Upload Form</title>
 <style>
@@ -10,7 +10,7 @@
 </style>
 </head>
 <body>
-
+-->
 <h3>Your file was successfully uploaded!</h3>
 
 <ul>
@@ -25,7 +25,7 @@ echo $item.':'.$value.'<br/>';
 </ul>
 <h1 id="count">PAGE COUNT=<?php
 echo $pagecount;?></h1>
-<p><?php echo anchor('login/upload_file', 'Upload Another File!'); ?></p>
+<p><?php echo anchor('upload/upload_file', 'Upload Another File!'); ?></p>
 <p><?php echo anchor('login/profile_open', 'Back to Profile!'); ?></p>
 
 </body>
