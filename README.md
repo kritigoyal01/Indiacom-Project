@@ -1,10 +1,10 @@
 # IndiacomPagecount
 module to calculate number of pages at the time of upload 
 
-and another module has been added-
-# Document verification
 
-NOTES FOR OPERATION
+# Document verification  module has been added-
+
+## INSTRUCTIONS FOR OPERATION
 
 * download zip
 * extract
