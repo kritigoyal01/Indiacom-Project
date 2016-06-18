@@ -8,9 +8,8 @@ NOTES FOR OPERATION
 
 * download zip
 * extract
+* Rename the root folder to **ci_introl** or else many retrospective changes have to be accomodated in **config.php**
 * import tables in **testphp** DB (read note in **DB folder** for import)
-also rename the root folder to **ci_introl**
-or else many retrospective changes have to be accomodated in **config.php**
 * enter url
 ```sh
   http://localhost:8081/ci_introl/login
