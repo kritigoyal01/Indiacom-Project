@@ -34,8 +34,13 @@
 }
 
 li.active a, li.active a:hover {
-    background:#fff;
+    background:	#bdc3c7;
     color:#4c4c4c;
+}
+
+li.active a:hover
+{
+	background:#7f8c8d;
 }
 
 /*----- Content of Tabs -----*/

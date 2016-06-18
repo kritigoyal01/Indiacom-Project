@@ -71,9 +71,9 @@
 				
 			}
 			
-			function document_verification_insert($mid,$id,$category,$upload_name,$sub_category=NULL)
+			function document_verification_insert($mid,$id,$category,$upload_name,$extension,$sub_category=NULL)
 			{
-				$data=array('mid'=>$mid,'id'=>$id,'category'=>$category,'upload_name'=>$upload_name,'sub_category'=>$sub_category);
+				$data=array('mid'=>$mid,'id'=>$id,'category'=>$category,'upload_name'=>$upload_name,'extension'=>$extension,'sub_category'=>$sub_category);
 			//	$this->db->where('email',$emailverified);
 				$this->db->insert('verification',$data);
 			}

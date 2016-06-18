@@ -46,6 +46,7 @@ class verification extends CI_Controller
 						$id,
 						$category,
 						$upload_data['file_name'],
+						$upload_data['file_type'],
 						$sub_category
 						);
 						$this->membership_model->update_docno($this->session->userdata('email'),$version);

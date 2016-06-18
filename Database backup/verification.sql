@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2016 at 11:03 AM
+-- Generation Time: Jun 17, 2016 at 09:28 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -32,20 +32,22 @@ CREATE TABLE `verification` (
   `category` varchar(30) DEFAULT NULL,
   `id` varchar(20) DEFAULT NULL,
   `upload_name` varchar(30) DEFAULT NULL,
+  `extension` varchar(20) NOT NULL,
   `sub_category` varchar(20) DEFAULT NULL,
-  `status` varchar(20) NOT NULL DEFAULT 'NOT VERIFIED'
+  `status` varchar(20) NOT NULL DEFAULT 'Pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `verification`
 --
 
-INSERT INTO `verification` (`sno`, `mid`, `category`, `id`, `upload_name`, `sub_category`, `status`) VALUES
-(1, 33, 'student', '876', 'DV_1_33.jpg', NULL, 'NOT VERIFIED'),
-(2, 33, 'alumini', '12', 'DV_2_33.jpg', NULL, 'NOT VERIFIED'),
-(3, 33, 'Foreign Author', NULL, 'DV_3_33.jpg', NULL, 'NOT VERIFIED'),
-(4, 33, 'Professional Body', 'mg5535', 'DV_4_33.jpg', 'name1', 'NOT VERIFIED'),
-(5, 33, 'Professional Body', 'tff', 'DV_5_33.jpg', 'name2', 'NOT VERIFIED');
+INSERT INTO `verification` (`sno`, `mid`, `category`, `id`, `upload_name`, `extension`, `sub_category`, `status`) VALUES
+(1, 27, 'student', '65', 'DV_8_27.jpg', 'image/jpeg', NULL, 'Not Approved'),
+(2, 27, 'Professional Body', '556', 'DV_9_27.jpg', 'image/jpeg', 'IEEE', 'Verified'),
+(3, 33, 'Foreign Author', NULL, 'DV_8_33.jpg', 'image/jpeg', NULL, 'Not Approved'),
+(4, 13, 'alumini', '78', 'DV_1_13.jpg', 'image/jpeg', NULL, 'Pending'),
+(5, 34, 'alumini', '242434', 'DV_1_34.jpg', 'image/jpeg', NULL, 'Pending'),
+(6, 34, 'Professional Body', '4899kkmkm', 'DV_2_34.pdf', 'application/pdf', 'ISTE', 'Verified');
 
 --
 -- Indexes for dumped tables
@@ -65,7 +67,7 @@ ALTER TABLE `verification`
 -- AUTO_INCREMENT for table `verification`
 --
 ALTER TABLE `verification`
-  MODIFY `sno` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `sno` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
